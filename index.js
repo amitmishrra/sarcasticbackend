@@ -8,6 +8,12 @@ const cors = require("cors");
 app.use(express.json())
 app.use(cors())
 
+app.UseCors(builder => builder
+   .AllowAnyOrigin()
+   .AllowAnyMethod()
+   .AllowAnyHeader()
+            )
+
 app.listen(5000,(req, res) =>{
     console.log("Server is running")
 })
