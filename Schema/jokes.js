@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const jokesData = new mongoose.Schema(
     {
-        joke : String,
+        path : String,
         likes : Number
     },{
         collection : "jokesData"

@@ -60,15 +60,15 @@ app.patch("/updateLikes/:id",async (req,res)=>{
 const Jokes = mongoose.model("jokesData");
 
 app.get("/getJokes",async (req, res)=>{
-    const quote = await Jokes.find()
-   res.send(quote)
+    const jokes = await Jokes.find()
+   res.send(jokes)
 })
 
 app.post('/jokesData',async (req, res)=>{
-    const {joke, likes} = req.body;
+    const {path, likes} = req.body;
     try {
         await Jokes.create({
-            joke : joke,
+            path : path,
             likes : likes
         })
         res.send({msg : "posted"})
@@ -80,7 +80,6 @@ app.post('/jokesData',async (req, res)=>{
 
 app.patch("/jokeLikes/:id",async (req,res)=>{
     const newLike = req.body
-    console.log(newLike.newLike)
     try {
       const result = await Jokes.findOneAndUpdate({_id : req.params.id}, {$set : {likes : newLike.newLike}}, {useFindAndModify : false})
         res.status(201).send({msg :"updated succesfully"})
